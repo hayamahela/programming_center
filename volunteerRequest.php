@@ -113,6 +113,7 @@
     <img class="img" 
       src="css/images/logo.png"
       alt="image">
+    <form action="requestvol.php" method="post" class="formcontainer">
     <div class="container-text">
       <h2>Ideas and UI components in your <br>inbox</h2>
       <p>Sign up to receive ideas, free <br> components and free resources plus 15% on all of our <br> pro UI kits.</p>
@@ -129,25 +130,25 @@
         <input type="text" placeholder="Enter The grade You score in The selected course.." name="grade" required>
 
         <input type="datetime-local" name="date_time" placeholder="Enter Time" required>
-      <button type="submit">Volunteer</button>
-    </div>
+      <button type="submit" name="submit" value="submit">Volunteer</button>
+    </div></form>
   </div>
 
  <!-- about section-->
-    <!-- about section-->
-      <div id="aboutus" class="about-section">
-        <div class="inner-container">
-            <h1>About Us</h1>
-            <p class="text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates sit deleniti autem error eos totam nisi neque voluptates sit deleniti autem error eos totam nisi neque.
-            </p>
-            <div class="skills">
-                <span>Helpin Sessions</span>
-                <span>Volunteering</span>
-                <span>Offering Workshops</span>
-            </div>
-        </div>
+<article id="aboutus" class="container-fluid bg-grey">
+  <div class="row">
+    <div class="col-sm-4">
+    <a class="navbar-brand" href="#"><img src="css/images/logo.png" height="300px" width="280px"></a>
     </div>
+    <div class="col-sm-8">
+      <h2><strong>OUR VALUES</strong></h2><br>
+      <h4><strong>MISSION:</strong> o mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
+      <h4><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4>
+    </div>
+  </div>
+</article>
+
 
 <!--footer -->
 <footer>
