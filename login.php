@@ -26,6 +26,11 @@ if (isset($_REQUEST['submit']))
 			$_SESSION['user_name']   = $user_data['teacher_name'];
 			header("location:home_teacher.htm"); 
 		}	
+		else if ($_SESSION['role'] == "admin")
+		{
+			$_SESSION['admin_id']     = $user_data['admin_id'];
+			header("location:request.php"); 
+		}	
 	} 
 	
 	else 
