@@ -4,45 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NEW</title>
+    <title>Workshop</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <link href="css/new.css" rel="stylesheet">
-    
-    <?php
-// Username is root
-
-
-
-$username = 'root';
-$password = ''; 
-// Database name is gfg
-$database = 'programming_center'; 
-// Server is localhost with
-// port number 3308
-$servername='localhost';
-$mysqli = new mysqli($servername, $username, 
-                $password, $database);
-  
-// Checking for connections
-if ($mysqli->connect_error) {
-    die('Connect Error (' . 
-    $mysqli->connect_errno . ') '. 
-    $mysqli->connect_error);
-}
-  
-// SQL query to select data from database
-$sql1 = "SELECT * FROM workshop";
-$sql2 = "SELECT * FROM trainingprograms";
-
-$result1 = $mysqli->query($sql1);
-$result2 = $mysqli->query($sql2);
-
-$mysqli->close(); 
-?>
 
 
 <style>
@@ -51,9 +19,10 @@ $mysqli->close();
     border-radius: 4px;
     background: #fff;
     box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
-      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
-  padding: 14px 80px 18px 36px;
-  cursor: pointer;
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    padding: 14px 80px 18px 36px;
+    cursor: pointer;
+    height: 100%;
   } 
 
   .card:hover{
@@ -139,35 +108,50 @@ $mysqli->close();
     </div>
     </div>
 </nav>
+<!-- volunteer request-->
+<div id="about"  class="about">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-7">
+                  <div class="titlepage">
+                     <h2> Upcoming Workshops</h2>
+                     <span></span></div></div></div>
 
-<div class="container">
-     
-  <div class="row">
-                <?php   // LOOP TILL END OF DATA 
-                while($rows=$result1->fetch_assoc())
-                {
-             ?>
-    <div class="col-md-4">
+<?php 
+session_start(); 
+         include 'user.php';
+         $user  = new User();
+         $req = $user->workshops();
+         
+
+         if ($req == null)
+          echo "<h3>No Workshops is added</h3>";
+
+      else 
+      {
+        echo "  <div class=\"container\">";
+        echo "  <div class=\"row\">";
+       foreach ($req as $data)
+       { 
+
+              ?>
+      <div class="col-md-4">
       <div class="card card-1">  
-      <h3><?php echo $rows['title'];?></h3>
-      <p><?php echo $rows['detail'];?></p>
-      <p><?php echo $rows['presenter'];?></p>
-      <p><?php echo $rows['date'];?></p>
-      <p><?php echo $rows['time'];?></p>
-      <p><?php echo $rows['place'];?></p>
-      <br>
-       <a class="read_more" >Enroll</a>
+      <h3><?php echo $data['title'];?></h3>
+      <p><?php echo $data['detail'];?></p>
+      <p><?php echo $data['presenter'];?></p>
+      <p><?php echo $data['date'];?></p>
+      <p><?php echo $data['time'];?></p>
+      <p><?php echo $data['place'];?></p>
 
-        <br>
-        <br>
-      </div>
-    </div>
-    <?php
-
-        }   
-         ?>
-  </div>
 </div>
+  </div>
+
+<?php
+        }   
+       } 
+         ?>
+         </div></div></div></div></div>
 
 <!--offer help section-->
       <div id="about"  class="about">
