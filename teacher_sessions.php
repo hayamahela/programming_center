@@ -29,7 +29,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="teacher_sessions.htm">Home</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item"> 
         <a class="nav-link" href="workshop.php">Workshop</a>
       </li>
       <li class="nav-item">
