@@ -26,16 +26,20 @@ class User
        }
    }
 
-      function check_login($id,$password)
+   function check_login($id,$password)
    {
        $conncetion = $this->connect();
        $sql1="SELECT * from login_student WHERE student_id='$id' and password='$password'"; 
        $sql2="SELECT * from login_teacher WHERE teacher_id='$id' and password='$password'";
+       $sql3="SELECT * from login_admin WHERE admin_id='$id' and password='$password'";
        
        $result1   = $conncetion->query($sql1);
        $result2   = $conncetion->query($sql2);
+       $result3   = $conncetion->query($sql3);
        $count_student = $result1->num_rows;
        $count_teacher = $result2->num_rows;
+       $count_admin = $result3->num_rows;
+
 
         if ($count_student == 1)
         {
@@ -48,10 +52,16 @@ class User
           $_SESSION['role'] = "teacher";
           return $result2;
         }
+          else if ($count_admin == 1)
+        {
+          $_SESSION['role'] = "admin";
+          return $result3;
+        }
 
         else 
         { return null;}   
    }
+
 
 
 
@@ -109,6 +119,15 @@ function add_session($week, $time, $place, $course, $teacher_id, $teacher_name)
      $conncetion = $this->connect();
       $sql="INSERT INTO volunteeringrequest (name,ID,fromEmail,phone,CourseCode,grade,date_time)
       VALUES ('$name','$ID','$fromEmail', '$phone', '$CourseCode', '$grade', '$date_time')";
+      $inserted =  $conncetion->query($sql) ;
+     return $inserted;
+       
+    }
+	 function workshop_request($teacher_name,$teacher_id,$fromEmail, $phone, $details, $title, $date_time, $place)
+   {
+     $conncetion = $this->connect();
+      $sql="INSERT INTO workshoprequest (teacher_name,teacher_id,fromEmail, phone, details, title, date_time, place)
+      VALUES ('$teacher_name','$teacher_id','$fromEmail', '$phone', '$details', '$title', '$date_time', '$place')";
       $inserted =  $conncetion->query($sql) ;
      return $inserted;
        
