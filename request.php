@@ -18,6 +18,7 @@
     transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
     padding: 14px 80px 18px 36px;
     cursor: pointer;
+    height: 100%;
 } 
 
 .card:hover{
@@ -87,12 +88,13 @@
         <a class="nav-link" href="workshop_student.php">Workshop</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="">Sessions</a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link" href="pleasework.htm">Resources</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://sdl.edu.sa/sdlportal/en/publishers.aspx">SDL</a>
-      </li>
-      <li class="nav-item">
+            <li class="nav-item">
         <a class="nav-link" href="#aboutus">About Us</a>
       </li>
       <li class="nav-item">
@@ -103,10 +105,14 @@
   </div>
 </nav>
 
- 
-<article class="container2">
-	<h2>Requests</h2>
- <section class="row"> 
+<!-- volunteer request-->
+<div id="about"  class="about">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-7">
+                  <div class="titlepage">
+                     <h2> Volunteer Applications</h2>
+                     <span></span></div></div></div>
 
  <?php 
  session_start(); 
@@ -121,42 +127,88 @@
 
       else 
       {
+        echo "  <div class=\"container\">";
+        echo "  <div class=\"row\">";
        foreach ($req as $data)
        { 
-           $name = $data['name'];
-           $ID = $data['ID'];
-           $fromEmail      = $data['fromEmail'];
-           $phone     = $data['phone'];
-           $CourseCode       = $data['CourseCode'];
-           $grade      = $data['grade'];
-           $date_time      = $data['date_time'];
-
-            echo "  <div class=\"container\">
-    <div class=\"row\"><div class=\"col-md-4\"><div class=\"card card-1\"><h3>$name</h3>";
-            echo "<p>ID: $ID</p>";
-            echo "<p>Email: $fromEmail</p>";
-            echo "<p>Phone: $phone</p>";
-            echo "<p>CourseCode: $CourseCode</p>";
-            echo "<p>grade: $grade</p>";
-            echo "<p>Date & Time: $date_time</p>";
-                        echo "</div></div></div>";
 
               ?>
-  <a href="reject.php?ID=<?php echo $data["ID"]; ?>"><button type="submit" name="submit" class="btn">Reject</button></a>
-  <a href="Accept.php?ID=<?php echo $data["ID"];?>"><button type="submit" name="submit" class="btn">Accept</button></a></div>
+      <div class="col-md-4">
+      <div class="card card-1">  
+      <h3><?php echo $data['name'];?></h3>
+      <p><?php echo $data['ID'];?></p>
+      <p><?php echo $data['fromEmail'];?></p>
+      <p><?php echo $data['CourseCode'];?></p>
+      <p><?php echo $data['grade'];?></p>
+      <p><?php echo  $data['date_time'];?></p>
+  <a class="btn btn-outline-secondary" href="reject.php?ID=<?php echo $data["ID"]; ?>">Reject</a>
+  <a class="btn btn-outline-secondary" href="Accept.php?ID=<?php echo $data["ID"];?>">Accept</a>
+</div>
   </div>
-   </div>
 
 <?php
         }   
        } 
          ?>
+         </div></div></div>
    </div>
-      </div>
+   </div>
+      </div></div></div>
 
  </section>
 </article>
- <br>
+
+<!--- Workshop Request-->
+<div id="about"  class="about">
+         <div class="container">
+            <div class="row d_flex">
+               <div class="col-md-7">
+                  <div class="titlepage">
+                     <h2> Workshop Hosting Applications</h2>
+                     <span></span></div></div></div>
+ <?php 
+
+         $req = $user->workshoprequests();
+         
+
+         if ($req == null)
+          echo "<h3>No requests is added</h3>";
+
+      else 
+      {
+        echo "  <div class=\"container\">";
+        echo "  <div class=\"row\">";
+       foreach ($req as $data)
+       { 
+
+              ?>
+      <div class="col-md-4">
+      <div class="card card-1">  
+      <h3><?php echo $data['teacher_name'];?></h3>
+      <p><?php echo $data['teacher_id'];?></p>
+      <p><?php echo $data['fromEmail'];?></p>
+      <p><?php echo $data['phone'];?></p>
+      <p><?php echo $data['details'];?></p>
+      <p><?php echo  $data['title'];?></p>
+      <p><?php echo  $data['date_time'];?></p>
+      <p><?php echo  $data['place'];?></p>
+
+  <a class="btn btn-outline-secondary" href="reject.php?title=<?php echo $data["title"]; ?>">Reject</a>
+  <a class="btn btn-outline-secondary" href="Accept.php?title=<?php echo $data["title"];?>">Accept</a>
+</div>
+  </div>
+
+<?php
+        }   
+       } 
+         ?>
+         </div></div></div>
+   </div>
+   </div>
+      </div></div></div>
+
+ </section>
+</article>
 
 
 
