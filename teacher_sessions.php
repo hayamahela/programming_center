@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NEW</title>
+  <title>Home</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -11,7 +11,64 @@
   <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
   <link href="css/new.css" rel="stylesheet">
   
+<style>
 
+  .card{
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+  padding: 14px 80px 18px 36px;
+  cursor: pointer;
+  height: 100%;
+  } 
+
+  .card:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  }
+
+
+.card h3{
+  font-weight: 600;
+}
+
+.card img{
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  max-height: 120px;
+}
+
+
+.card-1{
+    background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px; 
+}
+
+.card-2{
+   background-image: url(https://ionicframework.com/img/getting-started/components-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+.card-3{
+   background-image: url(https://ionicframework.com/img/getting-started/theming-card.png);
+      background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+}
+
+@media(max-width: 990px){
+  .card{
+    margin: 20px;
+  }
+} 
+
+</style>
 </head>
 <body>
 
@@ -27,9 +84,9 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="teacher_sessions.htm">Home</a>
+        <a class="nav-link" href="teacher_sessions.php">Home</a>
       </li>
-      <li class="nav-item"> 
+      <li class="nav-item">
         <a class="nav-link" href="workshop.php">Workshop</a>
       </li>
       <li class="nav-item">
@@ -51,19 +108,19 @@
  
 
     <div id="about"  class="about">
-         <div class="container"><br><br><br>
+         <div class="container">
             <div class="row d_flex">
                <div class="col-md-7">
                   <div class="titlepage">
                      <h2> Your Upcoming Sessions</h2>
                      <span></span>
                   </div>
-               </div><a class="read_more" href="addSession.php" > Add Session  <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+               </div>
             </div>
          
 
  <section class="row"> 
-
+<a class="read_more" href="addSession.php" > Add Session</a>
  <?php 
  session_start(); 
          include 'user.php';
@@ -73,42 +130,36 @@
          $sessionArray = array();
          $weekArray = array();
          $courseArray = array();
-
+  
          if ($session == null)
-          echo "<br>No sessions is added";
+          echo "<h3>No Sessions is added</h3>";
 
       else 
       {
+        echo "  <div class=\"container\">";
+        echo "  <div class=\"row\">";
        foreach ($session as $data)
        { 
-           $session_id = $data['session_id'];
-           $week_number = $data['week_number'];
-           $course      = $data['course'];
-           array_push($weekArray, $week_number);
-           array_push($courseArray, $course);
-           $statue     = $data['statue'];
-           $time       = $data['time'];
-           $place      = $data['place'];
 
-            echo "  <div class=\"column\">
-    <div class=\"card\"><br>Week: $week_number<br>";
-            echo "Course: $course<br>";
-            echo "Date & Time: $time<br>";
-            echo "Place: $place<br>";
-            echo "Statue: $statue<br><br>";
               ?>
-  <a href="delete_session.php?session_id=<?php echo $data["session_id"]; ?>">Delete</a> <br></div>
-   </div>
+      <div class="col-md-4">
+      <div class="card card-1"> 
+
+       <?php $data['session_id'];?> 
+      <h3><?php echo $data['course'];?></h3>
+      <p>Teacher: <?php echo $data['teacher_name'];?></p>
+      <p>Time: <?php echo $data['time'];?></p>
+      <p>Week Number: <?php echo $data['week_number'];?></p>
+      <p>Place: <?php echo $data['place'];?></p>
+  <a class="btn btn-outline-secondary" href="delete_session.php?session_id=<?php echo $data["session_id"]; ?>">Delete</a>
+</div>
+  </div>
 
 <?php
         }   
        } 
          ?>
-
-   </div>  
-
-      </div> </div>
-      </div>
+         </div></div></div></div>
 
  </section>
 
