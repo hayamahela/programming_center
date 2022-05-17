@@ -174,17 +174,34 @@ function add_session($week, $time, $place, $course, $teacher_id, $teacher_name)
         return $data;
       }   
    }
-   function add_volunteer($name, $ID, $Email, $phone, $CourseCode, $grade)
+   function add_volunteer($sql)
    {
 
       $conncetion = $this->connect();
+      $result    = $conncetion->query($sql);            
+      $count_t   = $result->num_rows;             
+      if ($count_t > 0)
+      {
+          While ($row = $result->fetch_assoc()){   
+          $data[]=$row;
+           $name = $row['name'];
+           $ID = $row['ID'];
+           $Email      = $row['fromEmail'];
+           $phone     = $row['phone'];
+           $CourseCode       = $row['CourseCode'];
+           $grade      = $row['grade'];
+
+           $sql = "INSERT INTO volunteer (name, ID, fromEmail, phone, CourseCode, grade) VALUES ('$name', '$ID', '$Email',' $phone', '$CourseCode', '$grade');";
+      }
+        return $data;
+      }   
       $sqll = "DELETE FROM volunteeringrequest WHERE ID =  '" . $_GET["ID"] . "'";
-      $sql = "INSERT INTO volunteer (name, ID, fromEmail, phone, CourseCode, grade)
-      VALUES ('$name', '$ID', '$Email',' $phone', '$CourseCode', '$grade')";
+   
 
       $inserted = $conncetion->query($sql);
-     $deleted = $conncetion->query($sqll);
+      $deleted = $conncetion->query($sqll);
       return $inserted;
+      return $deleted;
    }
 
     
