@@ -174,6 +174,7 @@ function add_session($week, $time, $place, $course, $teacher_id, $teacher_name)
         return $data;
       }   
    }
+  
    function add_volunteer($sql)
    {
 
@@ -192,6 +193,54 @@ function add_session($week, $time, $place, $course, $teacher_id, $teacher_name)
            $grade      = $row['grade'];
 
            $sql = "INSERT INTO volunteer (name, ID, fromEmail, phone, CourseCode, grade) VALUES ('$name', '$ID', '$Email',' $phone', '$CourseCode', '$grade');";
+
+
+/////////// EMAIL PART 
+
+     $mailto = "3910012@stu.rcyci.edu.sa";  //admin email 
+
+      
+//email subjects
+ $subject = "congratulations! You're now a Programming Center volunteer ";
+ $subject2 = "Confirmation: volunteer request Acceptance"; // For customer confirmation
+ 
+ //Email body that will be sent to the both admin and Volunteer
+ $message = "congratulations " . $name . "! \n"
+ . "You are now offically a YUC Programming Center volunteer! How exciting is that!\n
+ You can now log into the Programming Center Website with your username and password to view your Volunteering page! \n
+ Thank you for being a part of our community, we look forward to seeing you! \n - Programming Center Team";
+
+ 
+ 
+
+ //message to admin
+ $message2 = "You have accepted this user as a volunteer"."\n\n".
+  "Name: " . $name . "\n"
+ . "Student ID: " . $ID . "\n"
+ . "Phone Number: " . $phone . "\n"
+ . "Course Code: " .  $CourseCode. "\n"
+ . "Grade recieved in ".$CourseCode.": ". $grade. 
+ "\n";
+
+
+ //Email headers
+ $headers = "From: " . $Email; // volunteer email, admin will receive
+ $headers2 = "From: " . $mailto; // This will be received by the volunteer
+ 
+ //PHP mailer function
+ 
+  $result1 = mail($mailto, $subject2, $message2, $headers); // This email sent to admin 
+  $result2 = mail($Email, $subject, $message, $headers2); //This confirmation email to volunteer
+ 
+  //Checking if Mails sent successfully
+ 
+  if ($result1 && $result2) {
+    $success = "Your Message was sent Successfully!";
+  } else {
+    $failed = "Sorry! Message was not sent, Try again Later.";
+  }
+
+
       }
        // return $data;
       }   
@@ -224,6 +273,56 @@ function delete_volunteer($sql)
 
         $sqll = "DELETE FROM volunteeringrequest WHERE ID =  '" . $row["ID"] . "'";
 
+
+$mailto = "3910012@stu.rcyci.edu.sa";  //admin email 
+
+      
+//email subjects
+ $subject = "Regarding Your Volunteering Request - Programming Center ";
+ $subject2 = "Confirmation: Volunteer request Rejection"; // For customer confirmation
+ 
+ //Email body that will be sent to the both admin and Volunteer
+ $message = "Dear " . $name . ",\n"
+ . "We appreciate that you took the time to apply to volunteer at YUC's programming center. After reviewing your submitted request, unfortunately you were not selected to volunteer.\n
+
+  We appreciate that your interest. thank you for applying, We wish you all the best.
+
+\n\n\n\n
+Regards, Programming Center Team";
+
+ 
+ 
+
+ //message to admin
+
+ $message2 ="You have Rejected this volunteer\n 
+ Name: " . $name . "\n"
+ . "Student ID: " . $ID . "\n"
+ . "Phone Number: " . $phone . "\n"
+ . "Course Code: " .  $CourseCode. "\n"
+ . "Grade recieved in ".$CourseCode.": ". $grade. 
+ "\n";
+
+ //Email headers
+ $headers = "From: " . $Email; // volunteer email, admin will receive
+ $headers2 = "From: " . $mailto; // This will be received by the volunteer
+ 
+ //PHP mailer function
+ 
+  $result1 = mail($mailto, $subject2, $message2, $headers); // This email sent to admin 
+  $result2 = mail($Email, $subject, $message, $headers2); //This confirmation email to volunteer
+ 
+  //Checking if Mails sent successfully
+ 
+  if ($result1 && $result2) {
+    $success = "Your Message was sent Successfully!";
+  } else {
+    $failed = "Sorry! Message was not sent, Try again Later.";
+  }
+
+
+
+
       }
        // return $data;
       }   
@@ -237,5 +336,188 @@ function delete_volunteer($sql)
    }
     
    
+ 
+ function add_workshop($sql)
+   {
+
+      $conncetion = $this->connect();
+      $result    = $conncetion->query($sql);            
+      $count_t   = $result->num_rows;             
+      if ($count_t > 0)
+      {
+          While ($rows = $result->fetch_assoc()){   
+           //$data[]=$row;
+           $title = $rows['title'];
+           $details = $rows['details'];
+           $presenter = $rows['name'];
+           $Email       = $rows['fromEmail'];
+           $phone      = $rows['phone'];
+           $presenter_ID      = $rows['ID'];
+           $date       = $rows['date_'];
+           $time      = $rows['time_'];
+           $place      = $rows['place'];
+
+           $sql = "INSERT INTO workshop (title, detail, presenter,  fromEmail, phone, presenter_ID, date_, time_, place) VALUES 
+           ('$title', '$details', '$presenter','$Email', '$phone', '$presenter_ID','$date', '$time', '$place');";
+
+
+/////////// EMAIL PART 
+
+     $mailto = "3910012@stu.rcyci.edu.sa";  //admin email 
+
+      
+//email subjects
+ $subject = "congratulations! You're Workshop Request has been Accepted! ";
+ $subject2 = "Confirmation: Workshop request Acceptance"; // For customer confirmation
+ 
+ //Email body that will be sent to the both admin and Volunteer
+ $message = "congratulations " . $presenter . "! \n"
+ . "Your ".$title." Workshop has been accepted by the Programming Center! How exciting is that!\n
+ Thank you for being a part of our community, we look forward to seeing you! \n - Programming Center Team";
+
+ 
+ 
+
+ //message to admin
+
+  $message2 = "You have accepted this Workshop"."\n\n".
+  "Name: " . $presenter . "\n"
+ . "presenter_ID: " . $presenter_ID . "\n"
+ . "Phone Number: " . $phone . "\n"
+ . "Title: " .  $title. "\n"
+ . "Details".$details
+ . "Title: " .  $title. "\n"
+ . "Date: " .  $date. "\n"
+ . "Time: " .  $time. "\n"
+ . "Place: " .  $place. "\n".
+ "\n";
+
+
+ //Email headers
+ $headers = "From: " . $Email; // volunteer email, admin will receive
+ $headers2 = "From: " . $mailto; // This will be received by the volunteer
+ 
+ //PHP mailer function
+ 
+  $result1 = mail($mailto, $subject2, $message2, $headers); // This email sent to admin 
+  $result2 = mail($Email, $subject, $message, $headers2); //This confirmation email to volunteer
+ 
+  //Checking if Mails sent successfully
+ 
+  if ($result1 && $result2) {
+    $success = "Your Message was sent Successfully!";
+  } else {
+    $failed = "Sorry! Message was not sent, Try again Later.";
+  }
+
+
+      }
+       // return $data;
+      }   
+     // $sqll = "DELETE FROM volunteeringrequest WHERE ID =  '" . $row["ID"] . "'";
+   
+
+      $inserted = $conncetion->query($sql);
+    //  $deleted = $conncetion->query($sqll);
+      return $inserted;
+      return $deleted;
+   }
+
+
+function delete_workshop_req($sql)
+   {
+
+      $conncetion = $this->connect();
+      $result    = $conncetion->query($sql);            
+      $count_t   = $result->num_rows;             
+      if ($count_t > 0)
+      {
+          While ($rows = $result->fetch_assoc()){   
+           //$data[]=$row;
+           $title = $rows['title'];
+           $details = $rows['details'];
+           $presenter = $rows['name'];
+           $Email       = $rows['fromEmail'];
+           $phone      = $rows['phone'];
+           $presenter_ID      = $rows['ID'];
+           $date       = $rows['date_'];
+           $time      = $rows['time_'];
+           $place      = $rows['place'];
+
+        $sqll = "DELETE FROM workshoprequest WHERE ID =  '" . $rows["ID"] . "'";
+
+
+
+
+$mailto = "3910012@stu.rcyci.edu.sa";  //admin email 
+
+      
+//email subjects
+ $subject = "Regarding Your Workshop Request - Programming Center ";
+ $subject2 = "Confirmation: Workshop request Rejection"; // For customer confirmation
+ 
+ //Email body that will be sent to the both admin and Volunteer
+ $message = "Dear " . $presenter . ",\n"
+ . "We appreciate that you took the time to apply to host a ".$title." workshop with YUC's programming center. After reviewing your submitted request, we have decided that we will not proceed with hosting this workshop. \n\n
+
+  We appreciate that your interest. thank you for applying. We wish you all the best.
+
+\n\n\n\n
+Regards, Programming Center Team";
+
+ 
+ 
+
+ //message to admin
+
+  $message2 = "You have rejected this Workshop"."\n\n".
+  "Name: " . $presenter . "\n"
+ . "presenter_ID: " . $presenter_ID . "\n"
+ . "Phone Number: " . $phone . "\n"
+ . "Title: " .  $title. "\n"
+ . "Details".$details
+ . "Title: " .  $title. "\n"
+ . "Date: " .  $date. "\n"
+ . "Time: " .  $time. "\n"
+ . "Place: " .  $place. "\n".
+ "\n";
+
+
+ //Email headers
+ $headers = "From: " . $Email; // volunteer email, admin will receive
+ $headers2 = "From: " . $mailto; // This will be received by the volunteer
+ 
+ //PHP mailer function
+ 
+  $result1 = mail($mailto, $subject2, $message2, $headers); // This email sent to admin 
+  $result2 = mail($Email, $subject, $message, $headers2); //This confirmation email to volunteer
+ 
+  //Checking if Mails sent successfully
+ 
+  if ($result1 && $result2) {
+    $success = "Your Message was sent Successfully!";
+  } else {
+    $failed = "Sorry! Message was not sent, Try again Later.";
+  }
+
+
+
+
+      }
+       // return $data;
+      }   
+     // $sqll = "DELETE FROM volunteeringrequest WHERE ID =  '" . $row["ID"] . "'";
+   
+
+      //$inserted = $conncetion->query($sql);
+      $deleted = $conncetion->query($sqll);
+    //  return $inserted;
+      return $deleted;
+   }
+   
+
+
+
+
  }
 ?>
