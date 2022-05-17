@@ -24,7 +24,7 @@
   line-height: 1.5;
 }
 
-  .img {
+  .img-form{
     width: 300px;
     height: 400px;
     object-fit: cover;
@@ -32,33 +32,32 @@
     padding: 20px 25px 35px 5px;
   }
 
-    h2 {
+    .h-form {
       font-size: 1.2rem;
       color: #1A2250;
     }
 
-    p {
+    .p-form {
       font-size: 14px;
       color: #3B4169;
       margin: 10px 0;
     }
 
-    input,
-    button {
+    .input-form , .button-form {
       width: 100%;
       border: none;
       padding: 14px;
       border-radius: 3px;
     }
 
-    input {
+    .input-form {
       border: 2px solid #DADDEC;
       margin: 5px 0 10px;
       font-size: 1rem;
       color: #656880;
     }
 
-    button {
+    .button-form {
       background-image: linear-gradient(to right, #457c66, #74c4a4);
       display: block;
       color: $primary-color;
@@ -68,7 +67,7 @@
       transition: box-shadow .3s ease-in-out;
     }
 
-    button:hover {
+    .button-form:hover {
       box-shadow: none;
     }
     </style>
@@ -110,44 +109,45 @@
   </div>
 </nav>
 <div class="container33">
-    <img class="img" 
+    <img class="img-form" 
       src="css/images/logo.png"
       alt="image">
     <form action="requestvol.php" method="post" class="formcontainer">
     <div class="container-text">
-      <h2>Ideas and UI components in your <br>inbox</h2>
-      <p>Sign up to receive ideas, free <br> components and free resources plus 15% on all of our <br> pro UI kits.</p>
-          <input type="text" placeholder="Enter Full Name" name="name" required>
+      <h2 class="h-form">Volunteer Application <br>JOIN US!</h2>
+      <p class="p-form">Join Our Programming Center Team, <br> We Encourage students to participatns who support <br>our massion.</p>
+          <input class="input-form" type="text" placeholder="Enter Full Name" name="name" required>
 
-        <input type="text" placeholder="Enter Your Student ID" name="ID" required>
+        <input class="input-form" type="text" placeholder="Enter Your Student ID" name="ID" required>
 
-        <input type="text" placeholder="Enter A Course Code You'd Like to Teach" name="CourseCode" required>
+        <input class="input-form" type="text" placeholder="Enter A Course Code You'd Like to Teach" name="CourseCode" required>
 
-        <input type="text" placeholder="Enter Your Email For Contact" name="fromEmail" required>
+        <input class="input-form" type="text" placeholder="Enter Your Email For Contact" name="fromEmail" required>
 
-        <input type="text" placeholder="Enter Your Phone Number" name="phone" required>
+        <input class="input-form" type="text" placeholder="Enter Your Phone Number" name="phone" required>
 
-        <input type="text" placeholder="Enter The grade You score in The selected course.." name="grade" required>
+        <input class="input-form" type="text" placeholder="Enter The grade You score in The selected course.." name="grade" required>
 
-        <input type="datetime-local" name="date_time" placeholder="Enter Time" required>
-      <button type="submit" name="submit" value="submit">Volunteer</button>
+        <input class="input-form" type="datetime-local" name="date_time" placeholder="Enter Time" required>
+      <button class="button-form" type="submit" name="submit" value="submit">Volunteer</button>
     </div></form>
   </div>
 
- <!-- about section-->
-<article id="aboutus" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-    <a class="navbar-brand" href="#"><img src="css/images/logo.png" height="300px" width="280px"></a>
+      <!-- about section-->
+      <div id="aboutus" class="about-section">
+        <div class="inner-container">
+            <h1>About Us</h1>
+            <p class="text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus velit ducimus, enim inventore earum, eligendi nostrum pariatur necessitatibus eius dicta a voluptates sit deleniti autem error eos totam nisi neque voluptates sit deleniti autem error eos totam nisi neque.
+            </p>
+            <div class="skills">
+                <span>Helpin Sessions</span>
+                <span>Volunteering</span>
+                <span>Offering Workshops</span>
+            </div>
+        </div>
     </div>
-    <div class="col-sm-8">
-      <h2><strong>OUR VALUES</strong></h2><br>
-      <h4><strong>MISSION:</strong> o mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <h4><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4>
-    </div>
-  </div>
-</article>
+
 
 
 <!--footer -->
